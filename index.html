@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff"><title>doodle</title>
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+  <main class="skin-viewport" aria-label="Doodle drawing studio">
+    <div class="skin-board" id="app-shell">
+      <img id="skin-art" class="skin-art" src="assets/inkbox-original.png" width="1487" height="1058" alt="" draggable="false" aria-hidden="true">
+      <div id="paper-wrap" class="paper-wrap" style="left:1.47948890%;top:20.03780718%;width:71.28446537%;height:65.87901701%">
+        <canvas id="drawing-canvas" width="1060" height="697" aria-label="Drawing canvas"></canvas>
+      </div>
+      <canvas id="pen-state" class="skin-patch" width="376" height="668" style="left:74.24344317%;top:21.92816635%;width:25.28581036%;height:63.13799622%" aria-hidden="true"></canvas>
+      <canvas id="size-state" class="skin-patch" width="405" height="85" style="left:1.74848689%;top:89.31947070%;width:27.23604573%;height:8.03402647%" aria-hidden="true"></canvas>
+      <canvas id="edge-state" class="skin-patch" width="400" height="85" style="left:30.53127102%;top:89.31947070%;width:26.89979825%;height:8.03402647%" aria-hidden="true"></canvas>
+      <canvas id="palette-state" class="skin-patch" width="277" height="74" style="left:59.17955615%;top:89.50850662%;width:18.62811029%;height:6.99432892%" aria-hidden="true"></canvas>
+      <canvas id="live-state" class="skin-patch" width="81" height="51" style="left:86.07935440%;top:90.92627599%;width:5.44720915%;height:4.82041588%" aria-hidden="true"></canvas>
+      <canvas id="play-state" class="skin-patch" width="68" height="66" style="left:93.61129792%;top:89.69754253%;width:4.57296570%;height:6.23818526%" aria-hidden="true"></canvas>
+      <div class="skin-controls">
+<button id="tools-toggle" class="image-hit" style="left:2.35373235%;top:1.70132325%;width:3.56422327%;height:4.82041588%" aria-label="Tools" title="Tools" aria-haspopup="dialog"><span class="sr-only">Tools</span></button>
+<button id="window-minimize" class="image-hit" style="left:86.81909886%;top:1.60680529%;width:3.63147276%;height:4.91493384%" aria-label="Minimize window" title="Minimize window" aria-pressed="false"><span class="sr-only">Minimize window</span></button>
+<button id="window-maximize" class="image-hit" style="left:90.92131809%;top:1.60680529%;width:3.83322125%;height:4.91493384%" aria-label="Full screen" title="Full screen" aria-pressed="false"><span class="sr-only">Full screen</span></button>
+<button id="window-close" class="image-hit" style="left:95.02353732%;top:1.51228733%;width:3.90047075%;height:5.10396975%" aria-label="Hide window" title="Hide window" ><span class="sr-only">Hide window</span></button>
+<button id="new-page" class="image-hit" style="left:2.15198386%;top:9.26275992%;width:12.10490921%;height:7.56143667%" aria-label="New" title="New" ><span class="sr-only">New</span></button>
+<button id="open-project" class="image-hit" style="left:14.86213853%;top:9.26275992%;width:11.90316073%;height:7.65595463%" aria-label="Open" title="Open" ><span class="sr-only">Open</span></button>
+<button id="save-project" class="image-hit" style="left:27.37054472%;top:9.07372401%;width:11.56691325%;height:8.03402647%" aria-label="Save" title="Save" ><span class="sr-only">Save</span></button>
+<button id="undo" class="image-hit" style="left:41.69468729%;top:9.07372401%;width:6.52320108%;height:7.93950851%" aria-label="Undo" title="Undo" ><span class="sr-only">Undo</span></button>
+<button id="redo" class="image-hit" style="left:48.62138534%;top:9.07372401%;width:6.52320108%;height:7.93950851%" aria-label="Redo" title="Redo" ><span class="sr-only">Redo</span></button>
+<button id="import-photo" class="addon-hit" style="left:56.22057835%;top:9.54631380%;width:9.28043040%;height:7.37240076%" aria-label="Import image" title="Import image"><svg class="addon-art" viewBox="0 0 145 80" aria-hidden="true"><path d="M7 7 137 5 140 71 7 74Z" fill="#111"/><path d="M4 4 133 3 135 67 5 70Z" fill="#fff" stroke="#111" stroke-width="4.5" stroke-linejoin="round"/><path d="m8 8 121-1m3 4 1 53M9 66l119-2" fill="none" stroke="#111" stroke-width=".9" stroke-linecap="round"/><text x="71" y="49" text-anchor="middle">Image</text></svg></button>
+<button id="open-layers" class="addon-hit" style="left:66.10625420%;top:9.54631380%;width:9.54942838%;height:7.37240076%" aria-label="Layers" title="Layers" aria-controls="layers-panel" aria-expanded="false"><svg class="addon-art" viewBox="0 0 145 80" aria-hidden="true"><path d="M7 7 137 5 140 71 7 74Z" fill="#111"/><path d="M4 4 133 3 135 67 5 70Z" fill="#fff" stroke="#111" stroke-width="4.5" stroke-linejoin="round"/><path d="m8 8 121-1m3 4 1 53M9 66l119-2" fill="none" stroke="#111" stroke-width=".9" stroke-linecap="round"/><text x="71" y="49" text-anchor="middle">Layers</text></svg></button>
+<button id="open-export" class="image-hit" style="left:76.19367855%;top:8.41209830%;width:22.73032952%;height:10.01890359%" aria-label="Export" title="Export" ><span class="sr-only">Export</span></button>
+<button id="pen-ink" class="image-hit" style="left:74.71418964%;top:22.40075614%;width:24.54606590%;height:9.16824197%" aria-label="Pen" title="Pen" data-brush="ink" aria-pressed="true"><span class="sr-only">Pen</span></button>
+<button id="pen-flow" class="image-hit" style="left:74.71418964%;top:32.60869565%;width:24.54606590%;height:10.01890359%" aria-label="Ink" title="Ink" data-brush="flow" aria-pressed="false"><span class="sr-only">Ink</span></button>
+<button id="pen-boil" class="image-hit" style="left:74.71418964%;top:43.10018904%;width:24.54606590%;height:8.97920605%" aria-label="Boil" title="Boil" data-brush="boil" aria-pressed="false"><span class="sr-only">Boil</span></button>
+<button id="pen-wiggle" class="image-hit" style="left:74.71418964%;top:52.55198488%;width:24.54606590%;height:9.07372401%" aria-label="Wiggle" title="Wiggle" data-brush="wiggle" aria-pressed="false"><span class="sr-only">Wiggle</span></button>
+<button id="pen-star" class="image-hit" style="left:74.71418964%;top:62.19281664%;width:24.54606590%;height:9.35727788%" aria-label="Star" title="Star" data-brush="star" aria-pressed="false"><span class="sr-only">Star</span></button>
+<button id="pen-bubble" class="image-hit" style="left:74.71418964%;top:72.68431002%;width:24.54606590%;height:10.01890359%" aria-label="Bubble" title="Bubble" data-brush="bubble" aria-pressed="false"><span class="sr-only">Bubble</span></button>
+<button id="color-Black" class="image-hit" style="left:59.24680565%;top:89.79206049%;width:4.30396772%;height:6.61625709%" aria-label="Black" title="Black" data-color="#111111" aria-pressed="true"><span class="sr-only">Black</span></button>
+<button id="color-Pink" class="image-hit" style="left:63.68527236%;top:90.17013233%;width:3.29522529%;height:5.38752363%" aria-label="Pink" title="Pink" data-color="#ff0099" aria-pressed="false"><span class="sr-only">Pink</span></button>
+<button id="color-Cyan" class="image-hit" style="left:67.11499664%;top:90.17013233%;width:3.29522529%;height:5.38752363%" aria-label="Cyan" title="Cyan" data-color="#00bfdf" aria-pressed="false"><span class="sr-only">Cyan</span></button>
+<button id="color-Yellow" class="image-hit" style="left:70.54472091%;top:90.17013233%;width:3.29522529%;height:5.38752363%" aria-label="Yellow" title="Yellow" data-color="#fff02a" aria-pressed="false"><span class="sr-only">Yellow</span></button>
+<button id="color-White" class="image-hit" style="left:74.10894418%;top:90.17013233%;width:3.29522529%;height:5.38752363%" aria-label="White" title="White" data-color="#ffffff" aria-pressed="false"><span class="sr-only">White</span></button>
+        <label for="brush-width" class="sr-only">Size</label><input id="brush-width" class="image-range" type="range" min="2" max="40" value="12" step="1" style="left:8.40618695%;top:90.73724008%;width:14.39139206%;height:5.38752363%" aria-label="Size"><output id="width-value" class="sr-only" for="brush-width">12</output>
+        <label for="texture" class="sr-only">Edge</label><input id="texture" class="image-range" type="range" min="0" max="100" value="65" step="1" style="left:37.65971755%;top:90.73724008%;width:14.18964358%;height:5.38752363%" aria-label="Edge"><output id="texture-value" class="sr-only" for="texture">65</output>
+        <button id="live-toggle" class="image-hit" style="left:86.21385340%;top:91.02079395%;width:5.24546066%;height:4.63137996%" aria-label="Live" aria-pressed="true" title="Live"><span class="sr-only">Live</span></button>
+        <button id="play-pause" class="image-hit" style="left:93.67854741%;top:89.69754253%;width:4.57296570%;height:6.33270321%" aria-label="Play" title="Play"><span id="play-label" class="sr-only">Play</span><svg id="play-icon" class="sr-only" viewBox="0 0 20 20" aria-hidden="true"><path d="m6 3 11 7-11 7Z"/></svg></button>
+      </div>
+    </div>
+    <button id="restore-window" class="restore-window" hidden>Open doodle</button>
+  </main>
+  <input type="file" id="photo-input" accept="image/png,image/jpeg,image/webp" hidden>
+  <input type="file" id="project-input" accept=".json,application/json" hidden>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <dialog id="tools-dialog" class="tools-dialog">
+    <div class="dialog-heading"><h1>Tools</h1><button id="tools-close" aria-label="Close tools">×</button></div>
+    <div class="tool-actions" role="group" aria-label="Drawing tools">
+      <button id="tool-draw" data-tool="draw" aria-pressed="true">Draw</button><button id="tool-select" data-tool="select" aria-pressed="false">Select</button><button id="tool-erase" data-tool="erase" aria-pressed="false">Erase</button>
+      <button id="load-sample">Sample</button>
+    </div>
+    <section class="settings-grid">
+      <div class="settings-heading"><h2 id="settings-title">Settings</h2><span id="selection-label">Next stroke</span></div>
+      <label>Pen<select id="effect-select"><option value="ink">Pen</option><option value="flow">Ink</option><option value="boil">Boil</option><option value="wiggle">Wiggle</option><option value="star">Star</option><option value="bubble">Bubble</option></select></label>
+      <label>Edge style<select id="material-select"><option value="crayon">Natural</option><option value="pencil">Fine</option><option value="marker">Dissolve</option></select></label>
+      <label class="wide-field" for="intensity">Motion <output id="intensity-value">50%</output><input id="intensity" type="range" min="0" max="100" value="50"></label>
+      <div class="wide-field"><span>Speed</span><div class="speed-group" role="group" aria-label="Speed"><button data-speed="1" class="active">Slow</button><button data-speed="2">Medium</button><button data-speed="3">Fast</button></div></div>
+      <label class="custom-color">Color<input type="color" id="custom-color" value="#111111" aria-label="Custom color"></label>
+      <div class="paper-palette" role="group" aria-label="Paper"><span>Paper</span><button data-paper="#ffffff" class="active" style="--swatch:#fff" aria-label="White paper"></button><button data-paper="#eef1e9" style="--swatch:#eef1e9" aria-label="Soft green paper"></button><button data-paper="#293344" style="--swatch:#293344" aria-label="Dark paper"></button></div>
+      <button id="remove-photo" hidden disabled>Remove image</button>
+      <div id="selection-actions" class="selection-actions wide-field" hidden><button id="duplicate-stroke">Copy</button><button id="bring-front">Bring forward</button><button id="delete-stroke">Delete stroke</button></div>
+      <div class="wide-field"><div class="settings-heading"><h2>Strokes</h2><span id="stroke-count">0</span></div><div id="stroke-list" class="stroke-list"></div></div>
+      <label class="wide-field" for="timeline">Time <output id="time-readout">0.00 / 3s</output><input id="timeline" type="range" min="0" max="3000" step="10" value="0"></label>
+      <span id="texture-label" class="sr-only">Edge</span><span id="canvas-hint" class="sr-only">Draw here</span><span id="save-state" class="wide-field save-state">Saved on this device</span>
+    </section>
+  </dialog>
+  <aside id="layers-panel" class="layers-panel" aria-labelledby="layers-title" tabindex="-1" hidden>
+    <div class="layers-heading" id="layers-drag-handle" title="Drag to move"><h2 id="layers-title">Layers</h2><button id="layers-close" aria-label="Close layers">×</button></div>
+    <div class="layers-body">
+      <div class="layer-toolbar"><button id="add-layer">+ Layer</button><button id="layer-import-photo">Import</button></div>
+      <div id="layer-list" class="layer-list" aria-label="Layers"></div>
+      <div class="layer-properties">
+        <label class="layer-name-field" for="layer-name">Name<input id="layer-name" type="text" maxlength="80" autocomplete="off" spellcheck="false"></label>
+        <div class="layer-flags"><label><input id="layer-visible" type="checkbox" checked>Visible</label><label><input id="layer-locked" type="checkbox">Locked</label></div>
+        <label class="layer-range-label" for="layer-opacity"><span>Opacity</span><output id="layer-opacity-value" for="layer-opacity">100%</output></label><input id="layer-opacity" type="range" min="0" max="100" value="100" step="1">
+        <section id="image-layer-settings" class="image-layer-settings" aria-label="Image settings" hidden>
+          <label id="photo-fit-label" for="photo-fit">Image fit<select id="photo-fit"><option value="contain">Fit</option><option value="cover">Fill</option></select></label>
+          <label class="layer-range-label" for="layer-scale"><span>Scale</span><output id="layer-scale-value" for="layer-scale">100%</output></label><input id="layer-scale" type="range" min="25" max="300" value="100" step="1">
+          <div class="layer-position"><label for="layer-x">X<input id="layer-x" type="number" value="0" step="1" inputmode="numeric"></label><label for="layer-y">Y<input id="layer-y" type="number" value="0" step="1" inputmode="numeric"></label></div>
+        </section>
+        <div class="layer-arrange"><button id="layer-up">Up</button><button id="layer-down">Down</button><button id="duplicate-layer">Duplicate</button><button id="merge-layer">Merge down</button><button id="delete-layer" class="layer-delete">Delete</button></div>
+      </div>
+    </div>
+  </aside>
+  <dialog id="export-dialog" class="export-dialog"><form method="dialog" class="dialog-heading"><h2>Export</h2><button aria-label="Close export">×</button></form><label>Format<select id="export-format"><option value="gif">GIF · 3-second loop</option><option value="png">PNG · full size</option><option value="video">Video · experimental</option></select></label><p id="export-note">3 seconds. 12–15 frames per second.</p><fieldset class="export-layers"><legend>Layers</legend><div class="export-layer-actions"><button id="export-all-visible" type="button">All visible</button><button id="export-doodles" type="button">Doodles</button></div><div id="export-layer-list" class="export-layer-list"></div><p class="export-layer-hint">Only checked layers are exported.</p></fieldset><label id="transparent-row" class="check-field" hidden><input id="export-transparent" type="checkbox">Transparent background</label><div id="export-progress-wrap" hidden><progress id="export-progress" max="1" value="0"></progress><span id="export-status">Preparing…</span></div><div class="dialog-actions"><button id="cancel-export" hidden>Cancel</button><button id="start-export">Save</button></div></dialog>
+  <dialog id="replace-dialog" class="confirm-dialog"><h2 id="replace-title">New page?</h2><p>You can undo this, or save your work first.</p><div class="dialog-actions"><button id="replace-cancel">Keep drawing</button><button id="replace-confirm">New page</button></div></dialog>
+  <dialog id="close-dialog" class="confirm-dialog"><h2>Hide doodle?</h2><p>Your drawing stays here.</p><div class="dialog-actions"><button id="close-cancel">Keep drawing</button><button id="close-confirm">Hide</button></div></dialog>
+  <script src="src/engine.js"></script><script src="src/layers.js"></script><script src="src/exports.js"></script><script src="src/reference-art.js"></script><script src="src/skin.js"></script><script src="src/app.js"></script>
+</body>
+</html>
